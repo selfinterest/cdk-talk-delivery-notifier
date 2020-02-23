@@ -15,7 +15,7 @@ The scenario:
 }
 ```
 
-- the delivery notification service (that is, this service) subscribes to the delivery topic. Every time it receives a notification that a shipment was deliverd, the service spins up a lambda that checks if the shipment was delivered on time.
+- the delivery notification service (that is, this service) subscribes to the delivery topic. Every time it receives a notification that a shipment was delivered, the service spins up a lambda that checks if the shipment was delivered on time.
 
 - if the shipment was not delivered on time, the lambda publishes a late notification to another SNS topic. An email address is subscribed to this topic (it is hardcoded in the demo). But you can assume that the email address belongs to someone VERY IMPORTANT who will be grumpy if a shipment is delivered late.
 
