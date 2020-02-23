@@ -21,7 +21,6 @@ The scenario:
 
 ## How to install
 ` $ npm install && cd functions/notifier && npm install`
-` $ export EMAIL_TO_NOTIFY="bob@bob.com" `
 
 ## Other useful commands
 
