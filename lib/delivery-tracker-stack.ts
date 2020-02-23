@@ -4,6 +4,7 @@ import sns = require('@aws-cdk/aws-sns');
 import subscriptions = require('@aws-cdk/aws-sns-subscriptions')
 import lambda = require('@aws-cdk/aws-lambda')
 
+
 export class DeliveryTrackerStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -36,7 +37,7 @@ export class DeliveryTrackerStack extends cdk.Stack {
     lateTopic.grantPublish(notifier)
 
     // finally, set up a subscription to email someone if shipments are late
-    const emailSubscription = new subscriptions.EmailSubscription('kimbrulee38@gmail.com')
+    const emailSubscription = new subscriptions.EmailSubscription("ruthehotha@mywrld.site") //throwaway email I made
     lateTopic.addSubscription(emailSubscription)
   }
 }
