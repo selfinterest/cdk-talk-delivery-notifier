@@ -8,7 +8,7 @@ export class DeliveryTrackerStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // This topic already exists -- some other service publishes to it
+    // Assume this topic already exists -- some other service publishes to it
     const deliveryTopic = sns.Topic.fromTopicArn(this, "deliveryTopic", "arn:aws:sns:us-east-1:939584036768:delivery-notifications")
 
     // We also need a topic we will publish the results on
@@ -17,7 +17,7 @@ export class DeliveryTrackerStack extends cdk.Stack {
     // The lambda function
     const notifier = new lambda.Function(this, "Notifier", {
       runtime: lambda.Runtime.NODEJS_12_X,
-      code: lambda.Code.fromAsset(path.join(__dirname, "..", "functions")),
+      code: lambda.Code.fromAsset(path.join(__dirname, "..", "functions", "notifier")),
       handler: 'notifier.main',
       // Pass identifiers the lambda needs as environment variables
       environment: {
@@ -32,6 +32,11 @@ export class DeliveryTrackerStack extends cdk.Stack {
     deliveryTopic.addSubscription(subscription)
 
 
+    // In addition, the lambda needs permission to publish to the topic
+    lateTopic.grantPublish(notifier)
 
+    // finally, set up a subscription to email someone if shipments are late
+    const emailSubscription = new subscriptions.EmailSubscription('kimbrulee38@gmail.com')
+    lateTopic.addSubscription(emailSubscription)
   }
 }
