@@ -30,7 +30,7 @@
     "@aws-cdk/aws-sns-subscriptions": "^1.26.0",
     "@aws-cdk/core": "^1.26.0",
     "@aws-cdk/cx-api": "^1.26.0",
-    "aws-sdk": "^2.624.0",
+    "aws-sdk": "^2.814.0",
     "moment": "^2.24.0",
     "source-map-support": "^0.5.16"
   }
